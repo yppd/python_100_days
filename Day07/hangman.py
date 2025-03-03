@@ -16,15 +16,13 @@ for word_length in len(chosen_word):
 
 print(placeholder)
 
-
-
 display = ""
 
 for letter in chosen_word:
     if letter == guess:
         display += letter
     else:
-        display +="_"
+        display += "_"
 
 # TODO-4
 '''
