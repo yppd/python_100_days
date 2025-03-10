@@ -1,37 +1,51 @@
 import random
+from hangman_words import word_list
+from hangman_art import stages, logo
 
-word_list = ["aardvark", "baboon", "camel"]
+print(logo)
 
 chosen_word = random.choice(word_list)
 print(chosen_word)
 
-display = ""
-correct_letters = []
+placeholder = ""
+lives = 6
+
+for char in chosen_word:
+    placeholder += "_"
+print(placeholder)
+
 game_over = False
-
-
-for letter in chosen_word:
-    display += "_"
-print(display)
+correct_letters = []
 
 while not game_over:
+    print(f"********************* {lives}/6 LIVES LEFT *********************")
 
     guess = input("Guess a letter: ").lower()
 
+    display = ""
+
     for letter in chosen_word:
         if letter == guess:
-            display += letter  # take the letter from chosen word
-            correct_letters.append(guess)
-        elif letter in correct_letters:  # take the letter from correct_letters
             display += letter
-        elif letter != chosen_word:
+            correct_letters.append(letter)
+        elif letter in correct_letters:
+            display += letter
+        else:
             display += "_"
+    print(f"Word to guess: {display}")
 
-
-    wprint(display)
-    print(correct_letters)
+    if guess not in chosen_word:
+        lives -= 1
+        print(f"You guessed {guess}, that's not in the word. You lose a life.")
+        if lives == 0:
+            game_over = True
+            print(F"********************** IT WAS {chosen_word}. YOU LOSE! **********************")
 
     if "_" not in display:
         game_over = True
-        print("You win")
-        print(correct_letters)
+        print("YOU WIN!")
+    elif lives == 0:
+        game_over = True
+        print("YOU LOSE!")
+
+    print(stages[lives])
