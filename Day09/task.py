@@ -6,6 +6,7 @@ import art
 
 print(art.logo)
 
+
 def find_highest_bidder(bidding_dictionary):
     winner = ""
     highest_bid = 0
@@ -18,10 +19,12 @@ def find_highest_bidder(bidding_dictionary):
             highest_bid = bid_amount
             winner = bidder
 
-
     print(f"The winner is {winner} with a bid of ${highest_bid}.")
 
+
 bids = {}
+
+
 continue_bidding = True
 while continue_bidding:
     name = input("What is your Name?: ")
@@ -33,6 +36,3 @@ while continue_bidding:
         find_highest_bidder(bids)
     elif should_continue == "yes":
         print("\n" * 20)
-
-
-
